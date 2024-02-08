@@ -1,9 +1,12 @@
 import { Apart } from "@models/apartment";
 import { connectToDB } from "@utils/database";
 
-export const GET = async (req, { params }) => {
+export const GET = async (req, res, { params }) => {
   const { query } = params;
-  console.log("!!!query LOOK", query);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
   const queries = query.split("&");
   console.log("queries", queries);
   let q = {};
