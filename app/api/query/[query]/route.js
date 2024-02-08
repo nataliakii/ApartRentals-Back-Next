@@ -3,7 +3,9 @@ import { connectToDB } from "@utils/database";
 
 export const GET = async (req, { params }) => {
   const { query } = params;
+  console.log("!!!query LOOK", query);
   const queries = query.split("&");
+  console.log("queries", queries);
   let q = {};
   queries.forEach((param) => {
     const [key, value] = param.split("=");
