@@ -3,9 +3,6 @@ import { Apart } from "@models/apartment";
 import { BookModel } from "@models/book";
 
 export const GET = async (req, { params }) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   try {
     await connectToDB();
 
@@ -34,9 +31,18 @@ export const GET = async (req, { params }) => {
         nonConfirmedBookedDays: nonConfirmedBookedDays,
       },
     };
-    return new Response(JSON.stringify(responseData), {
+
+    const response = new Response(JSON.stringify(responseData), {
       status: 200,
     });
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE"
+    );
+    response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+    return response;
   } catch (error) {
     return new Response({ status: 500 }, JSON.stringify(error));
   }
