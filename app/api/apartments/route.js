@@ -2,6 +2,9 @@ import { connectToDB } from "@utils/database";
 import { Apart } from "@models/apartment";
 
 export const GET = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   try {
     await connectToDB();
     console.log("hello from connected");
